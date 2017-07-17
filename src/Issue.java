@@ -2,6 +2,9 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Random;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -23,6 +26,10 @@ Connection conn;
         super("Login");
         initComponents();
         conn=javaconnect.ConnectDb();
+    }
+    public int Random(){
+        Random rd=new Random();
+        return rd.nextInt(1000+1);
     }
 
     /**
@@ -79,13 +86,28 @@ Connection conn;
 
         jLabel1.setText("Book ID");
 
-        jButton1.setText("Submit");
+        jButton1.setText("Search");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jTextField4.setEditable(false);
 
         jLabel3.setText("Edition");
+
+        jTextField6.setEditable(false);
+
+        jTextField2.setEditable(false);
 
         jLabel4.setText("Publisher");
 
         jLabel6.setText("Pages");
+
+        jTextField3.setEditable(false);
+
+        jTextField5.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,11 +140,10 @@ Connection conn;
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -148,19 +169,36 @@ Connection conn;
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Student Details"));
 
+        jTextField10.setEditable(false);
+
         jLabel13.setText("Semester");
 
         jLabel10.setText("Course");
 
+        jTextField13.setEditable(false);
+
         jLabel12.setText("Year");
 
-        jButton2.setText("Submit");
+        jButton2.setText("Search");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jTextField8.setEditable(false);
+
+        jTextField9.setEditable(false);
 
         jLabel7.setText("Student ID");
+
+        jTextField12.setEditable(false);
 
         jLabel8.setText("Name");
 
         jLabel9.setText("Father's Name");
+
+        jTextField11.setEditable(false);
 
         jLabel11.setText("Branch");
 
@@ -230,6 +268,11 @@ Connection conn;
         jLabel14.setText("Date Of Issue");
 
         jButton3.setText("Issue");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Back");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -287,6 +330,104 @@ Connection conn;
         Home ob = new Home();
         ob.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String sql = "Select * from Book where Book_ID=?";
+                try
+                {
+                    pst=conn.prepareStatement(sql);
+                    pst.setString(1,jTextField1.getText());
+                    rs=pst.executeQuery();
+                    if (rs.next()) {
+                        
+                        jTextField2.setText(rs.getString("Name"));
+                        jTextField3.setText(rs.getString("Edition"));
+                        jTextField4.setText(rs.getString("Publisher"));
+                        jTextField5.setText(rs.getString("Price"));
+                        jTextField6.setText(rs.getString("Pages"));
+                        rs.close();
+                        pst.close();
+                        
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Book ID not found");
+                    }
+                    
+                }
+                
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+                
+                finally
+                {
+                    try {
+                        rs.close();
+                        pst.close();
+                    } catch (Exception e) {
+                    }
+                }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String sql = "Select * from Student where Student_ID=?";
+                try
+                {
+                    pst=conn.prepareStatement(sql);
+                    pst.setString(1,jTextField7.getText());
+                    rs=pst.executeQuery();
+                    if (rs.next()) {
+                        
+                        jTextField8.setText(rs.getString("Name"));
+                        jTextField9.setText(rs.getString("Father"));
+                        jTextField10.setText(rs.getString("Course"));
+                        jTextField11.setText(rs.getString("Branch"));
+                        jTextField12.setText(rs.getString("Year"));
+                        jTextField13.setText(rs.getString("Semester"));
+                        rs.close();
+                        pst.close();
+                        
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Student ID not found");
+                    }
+                    
+                }
+                
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+                
+                finally
+                {
+                    try {
+                        rs.close();
+                        pst.close();
+                    } catch (Exception e) {
+                    }
+                }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        String sql = "insert into Issue(Issue_ID,Book_ID,Student_ID,Date_Of_Issue) values (?,?,?,?)";
+        try {
+            pst=conn.prepareStatement(sql);
+            int Issue_ID=Random();
+            pst.setString(1, ""+Issue_ID);
+            pst.setString(2, jTextField1.getText());
+            pst.setString(3, jTextField7.getText());
+            pst.setString(4, ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Book Issued Successfully");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
