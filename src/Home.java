@@ -93,6 +93,11 @@ public class Home extends javax.swing.JFrame {
         jButton6.setText("About");
 
         jButton5.setText("Return Book");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Issue Book");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -211,6 +216,12 @@ public class Home extends javax.swing.JFrame {
         Issue ob = new Issue();
         ob.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        setVisible(false);
+        Return ob = new Return();
+        ob.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
