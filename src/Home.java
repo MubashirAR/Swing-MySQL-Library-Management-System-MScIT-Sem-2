@@ -13,6 +13,7 @@ public class Home extends javax.swing.JFrame {
 
     
     public Home() {
+        setResizable(false);
         initComponents();
     }
 
@@ -56,6 +57,11 @@ public class Home extends javax.swing.JFrame {
         });
 
         jButton2.setText("Statistics");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("New Student");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +97,11 @@ public class Home extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Action"));
 
         jButton6.setText("About");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Return Book");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -185,7 +196,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(416, 311));
+        pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -222,6 +233,18 @@ public class Home extends javax.swing.JFrame {
         Return ob = new Return();
         ob.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        setVisible(false);
+        Statistics ob=new Statistics();
+        ob.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        setVisible(false);
+        About ob=new About();
+        ob.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
